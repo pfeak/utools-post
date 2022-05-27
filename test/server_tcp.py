@@ -1,7 +1,7 @@
 import socket, sys
 from termios import tcsendbreak
 
-address = ("127.0.0.1", 8000)
+address = ("0.0.0.0", 8000)
 tcpServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print("Server Socket Created.......", address)
 tcpServer.bind(address)

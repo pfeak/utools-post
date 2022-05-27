@@ -1,0 +1,15 @@
+{
+  "main": "index.html",
+  "preload": "preload.js",
+  "logo": "logo.png",
+  "pluginSetting": {
+    "single": true
+  },
+  "features": [
+    {
+      "code": "tcp",
+      "explain": "发送 tcp 数据包",
+      "cmds": ["send", "tcp"]
+    }
+  ]
+}

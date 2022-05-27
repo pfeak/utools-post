@@ -7,9 +7,19 @@
   },
   "features": [
     {
+      "code": "post",
+      "explain": "为了方便学习、工作中遇到开发、测试问题，能方便的发送数据包。",
+      "cmds": ["post", "send"]
+    },
+    {
       "code": "tcp",
       "explain": "发送 tcp 数据包",
-      "cmds": ["send", "tcp"]
+      "cmds": ["tcp"]
+    },
+    {
+      "code": "udp",
+      "explain": "发送 udp 数据包",
+      "cmds": ["udp"]
     }
   ]
 }

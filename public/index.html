@@ -5,18 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>utools-Post</title>
+    <script
+      src="https://kit.fontawesome.com/2285b629ef.js"
+      crossorigin="anonymous"
+    ></script>
+    <link href="https://fonts.googlefonts.cn/css?family=Muli" rel="stylesheet">
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <div class="container">
       <div class="input_container">
-        <input
-          type="text"
-          class="input ip_address"
-          maxlength="15"
-          value="127.0.0.1"
-        />
-        <input type="text" class="input port" maxlength="5" value="80" />
+        <div>
+          <p>IP:</p>
+          <input
+            type="text"
+            class="input ip_address"
+            maxlength="15"
+            value="127.0.0.1"
+          />
+        </div>
+        <div>
+          <p>PORT:</p><input type="text" class="input port" maxlength="5" value="80" />
+        </div>
         <textarea class="input text">hello world!</textarea>
       </div>
       <div class="btn_container">

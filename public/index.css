@@ -1,0 +1,87 @@
+* {
+  margin: 5px;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: 'Muli', sans-serif;
+  box-sizing: border-box;
+  background-color: #ff7f50;
+}
+
+.container {
+  height: 80vh;
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input_container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 300px;
+}
+
+.input_container > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+}
+
+.input_container p {
+  font-size: 12px;
+  font-weight: bolder;
+  color: aliceblue;
+}
+
+.input {
+  outline: none;
+  border: 2px solid #ffffff;
+  border-radius: 3px;
+}
+
+.input:hover {
+  border: 2px solid #1e90ff;
+}
+
+.input:focus {
+  border: 2px solid #1e90ff;
+}
+
+.input.ip_address {
+  width: 100px;
+}
+
+.input.port {
+  width: 40px;
+}
+
+.input.text {
+  margin-top: 10px;
+  width: 100%;
+  height: 200px;
+  resize: none;
+}
+
+.btn_container {
+  outline: none;
+  justify-content: center;
+  width: 5vw;
+}
+
+.btn_container .btn {
+  background-color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 3px;
+  width: 5vw;
+  cursor: pointer;
+}
+
+.btn_container .btn:hover {
+  transition: transform 0.1s;
+  transform: scale(1.5);
+  border: 2px solid #1e90ff;
+}

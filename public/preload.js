@@ -1,10 +1,20 @@
-const { createConnection } = require('net');
-const { createSocket } = require('dgram');
+const { createConnection, createServer } = require('net');
+const { createSocket, Socket } = require('dgram');
 
 window.services = {
-  tcpSend: (ip, port, message) => {
-    const client = createConnection(port, ip, () => {});
+  tcpSend: (log, ip, port, message) => {
+    const client = createConnection(port, ip);
+
+    client.on('error', (err) => {
+      log('client', err);
+    });
+
+    client.on('data', (data) => {
+      log('client receive', data);
+    });
+
     client.write(message);
+
     return;
   },
   udpSend: (ip, port, message) => {
@@ -12,5 +22,9 @@ window.services = {
     client.send(message, port, ip, (err) => {
       client.close();
     });
+  },
+  tcpServer: () => {
+    const server = createServer();
+    return server;
   },
 };

@@ -1,87 +1,121 @@
-* {
-  margin: 5px;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Muli', sans-serif;
 }
 
 body {
-  box-sizing: border-box;
-  font-family: 'Muli', sans-serif;
-  box-sizing: border-box;
-  background-color: #ff7f50;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f2f6;
 }
 
 .container {
-  height: 80vh;
+  height: 50vh;
   width: 80vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  /* border: 1px solid #000000; */
 }
 
 .input_container {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  width: 300px;
+  justify-content: center;
+  width: 100%;
 }
 
-.input_container > div {
+.btn_container {
+  width: 100%;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 45%;
+}
+
+.cnosole_container {
+  width: 100%;
+}
+
+.input_container .box {
+  width: 50%;
 }
 
 .input_container p {
-  font-size: 12px;
-  font-weight: bolder;
-  color: aliceblue;
+  float: left;
+  width: 20%;
+  height: 100%;
+  margin: 0;
+  font-size: 15px;
+  text-align: center;
+  color: #747d8c;
 }
 
 .input {
   outline: none;
-  border: 2px solid #ffffff;
   border-radius: 3px;
 }
 
-.input:hover {
-  border: 2px solid #1e90ff;
+.ip {
+  width: 200px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 15px;
+  text-align: center;
 }
 
-.input:focus {
-  border: 2px solid #1e90ff;
+.port {
+  width: 150px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  margin-left: 12px;
+  font-size: 15px;
+  text-align: center;
 }
 
-.input.ip_address {
-  width: 100px;
-}
-
-.input.port {
-  width: 40px;
-}
-
-.input.text {
+.text {
   margin-top: 10px;
-  width: 100%;
-  height: 200px;
+  width: 96%;
+  height: 100px;
   resize: none;
-}
-
-.btn_container {
-  outline: none;
-  justify-content: center;
-  width: 5vw;
+  border: 0;
+  padding: 2%;
+  font-size: 14px;
 }
 
 .btn_container .btn {
-  background-color: #ffffff;
-  border: 2px solid #ffffff;
+  height: 30px;
+  width: 15vw;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #747d8c;
+  border: 0;
   border-radius: 3px;
-  width: 5vw;
+  color: #ffffff;
   cursor: pointer;
+  font-size: 16px;
 }
 
-.btn_container .btn:hover {
-  transition: transform 0.1s;
-  transform: scale(1.5);
-  border: 2px solid #1e90ff;
+/* .btn_container .btn:hover { */
+  /* transition: transform 0.3s; */
+  /* transform: scale(1.2); */
+/* } */
+
+.console {
+  margin-top: 10px;
+  width: 96%;
+  height: 200px;
+  resize: none;
+  border: 0;
+  font-size: 12px;
+  padding: 2%;
+  background-color: #ffffff;
 }

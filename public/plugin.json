@@ -2,9 +2,6 @@
   "main": "index.html",
   "preload": "preload.js",
   "logo": "logo.png",
-  "pluginSetting": {
-    "single": true
-  },
   "features": [
     {
       "code": "post",

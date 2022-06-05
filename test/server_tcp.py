@@ -1,5 +1,4 @@
 import socket, sys
-from termios import tcsendbreak
 
 address = ("0.0.0.0", 8000)
 tcpServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

@@ -34,7 +34,7 @@ body {
   width: 100%;
   margin-top: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .cnosole_container {
@@ -94,8 +94,8 @@ body {
 .btn_container .btn {
   height: 30px;
   width: 15vw;
-  margin-left: 5px;
-  margin-right: 5px;
+  /* margin-left: 5px; */
+  /* margin-right: 5px; */
   background-color: #747d8c;
   border: 0;
   border-radius: 3px;
@@ -104,10 +104,13 @@ body {
   font-size: 16px;
 }
 
-/* .btn_container .btn:hover { */
-  /* transition: transform 0.3s; */
-  /* transform: scale(1.2); */
-/* } */
+.btn_container .btn:hover {
+  background-color: #2f3542;
+}
+
+.btn_container .btn:active {
+  transform: scale(0.96);
+}
 
 .console {
   margin-top: 10px;

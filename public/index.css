@@ -120,5 +120,7 @@ body {
   border: 0;
   font-size: 12px;
   padding: 2%;
-  background-color: #ffffff;
+  color: #ffffff;
+  background-color: #000000;
+  opacity: 0.8;
 }

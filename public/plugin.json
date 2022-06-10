@@ -2,6 +2,9 @@
   "main": "index.html",
   "preload": "preload.js",
   "logo": "logo.png",
+  "pluginSetting": {
+    "height": 550
+  },
   "features": [
     {
       "code": "post",

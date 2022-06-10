@@ -20,6 +20,8 @@ btn_clear.addEventListener('click', () => {
 });
 
 // server
+var tcpServer = null;
+
 function startTCPServer(server, ip, port) {
   server.on('error', (err) => {
     log('server', err);
@@ -72,11 +74,10 @@ btn_tcp.addEventListener('click', () => {
 
 // udp client
 btn_udp.addEventListener('click', () => {
-  window.services.udpSend(ip_address.value, port.value, text.value);
+  window.services.udpSend(log, ip_address.value, port.value, text.value);
 });
 
 // tcp server
-var tcpServer = null;
 btn_tcpServer.addEventListener('click', () => {
   if (tcpServer === null) {
     tcpServer = window.services.tcpServer();

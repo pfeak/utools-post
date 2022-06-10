@@ -14,14 +14,16 @@ window.services = {
     });
 
     client.write(message);
+    log('client', "send tcp (ip: " + ip + ", port: " + port + ", message: \"" + message + "\")");
 
     return;
   },
-  udpSend: (ip, port, message) => {
+  udpSend: (log, ip, port, message) => {
     const client = createSocket('udp4');
     client.send(message, port, ip, (err) => {
       client.close();
     });
+    log('client', "send udp (ip: " + ip + ", port: " + port + ", message: \"" + message + "\")");
   },
   tcpServer: () => {
     const server = createServer();

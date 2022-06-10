@@ -8,6 +8,7 @@ const cons = document.getElementsByClassName('console')[0];
 const btn_tcp = document.getElementById('tcp');
 const btn_udp = document.getElementById('udp');
 const btn_tcpServer = document.getElementById('tcpServer');
+const btn_udpServer = document.getElementById('udpServer');
 const btn_clear = document.getElementById('clear');
 
 function log(tag, msg) {
@@ -21,6 +22,7 @@ btn_clear.addEventListener('click', () => {
 
 // server
 var tcpServer = null;
+var udpServer = null;
 
 function startTCPServer(server, ip, port) {
   server.on('error', (err) => {
@@ -66,6 +68,15 @@ function stopTCPServer(server) {
   log('server', 'tcp 服务端已关闭');
 }
 
+function startUDPServer(server, ip, port) {
+  server.on('error', (msg, rinfo) => {
+    log('server', err);
+    udpServer = null;
+    btn_udpServer.style = 'background-color: #747d8c;';
+  });
+  server.bind(port)
+}
+
 // service
 // tcp client
 btn_tcp.addEventListener('click', () => {
@@ -86,4 +97,10 @@ btn_tcpServer.addEventListener('click', () => {
     stopTCPServer(tcpServer);
     btn_tcpServer.style = 'background-color: #747d8c;';
   }
+});
+
+// udp server
+btn_udpServer.addEventListener('click', () => {
+  udpServer = window.services.udpServer();
+  startUDPServer(udpServer, ip_address.value, port.value);
 });

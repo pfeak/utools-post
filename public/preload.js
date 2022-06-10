@@ -1,5 +1,5 @@
 const { createConnection, createServer } = require('net');
-const { createSocket, Socket } = require('dgram');
+const { createSocket } = require('dgram');
 
 window.services = {
   tcpSend: (log, ip, port, message) => {
@@ -29,4 +29,8 @@ window.services = {
     const server = createServer();
     return server;
   },
+  udpServer: () => {
+    const server = createSocket("udp4")
+    return server
+  }
 };

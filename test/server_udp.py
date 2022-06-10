@@ -8,6 +8,6 @@ while True:
     data, addr = sock.recvfrom(1024)
     print("Receive data = %s" % data)
     if data == b"exit":
-        sock.sendto(b"Goodbye!\n", addr)
+        sock.sendto(b"Goodbye!", addr)
         continue
-    sock.sendto(b"Hello %s!\n" % data, addr)
+    sock.sendto(b"Hello %s!" % data, addr)

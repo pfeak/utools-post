@@ -21,26 +21,23 @@ btn_clear.addEventListener('click', () => {
 });
 
 // server
-var tcpServer = null;
-var udpServer = null;
+var server = {
+  tcpServer: null,
+  udpServer: null,
+};
 
 function startTCPServer(server, ip, port) {
-  server.on('error', (err) => {
+  server.tcpServer.on('error', (err) => {
     log('server', err);
-    tcpServer = null;
+    server.tcpServer = null;
     btn_tcpServer.style = 'background-color: #747d8c;';
   });
 
-  server.on('close', () => {
+  server.tcpServer.on('close', () => {
     log('server', 'tcp 服务端 (' + ip + ', ' + port + ') 已关闭');
   });
 
-  server.listen(port, ip, () => {
-    log('server', 'tcp 服务端 (' + ip + ', ' + port + ') 正在监听中...');
-    btn_tcpServer.style = 'background-color: #2f3542;';
-  });
-
-  server.on('connection', (socket) => {
+  server.tcpServer.on('connection', (socket) => {
     log(
       'server',
       '有新的 tcp 客户端接入 (' +
@@ -60,21 +57,57 @@ function startTCPServer(server, ip, port) {
 
     socket.close();
   });
+
+  server.tcpServer.listen(port, ip, () => {
+    log('server', 'tcp 服务端 (' + ip + ', ' + port + ') 正在监听中...');
+    btn_tcpServer.style = 'background-color: #2f3542;';
+  });
 }
 
 function stopTCPServer(server) {
-  tcpServer.close();
-  tcpServer = null;
-  log('server', 'tcp 服务端已关闭');
+  server.tcpServer.close();
+  server.tcpServer = null;
 }
 
 function startUDPServer(server, ip, port) {
-  server.on('error', (msg, rinfo) => {
+  server.udpServer.on('error', (err) => {
     log('server', err);
-    udpServer = null;
+    server.udpServer = null;
     btn_udpServer.style = 'background-color: #747d8c;';
   });
-  server.bind(port)
+
+  server.udpServer.on('close', () => {
+    log('server', 'udp 服务端 (' + ip + ', ' + port + ') 已关闭');
+  });
+
+  server.udpServer.on('message', (msg, rinfo) => {
+    log(
+      'server',
+      '有新的 udp 客户端接入 (' +
+        rinfo.address +
+        ', ' +
+        rinfo.port +
+        ', ' +
+        rinfo.family +
+        ')'
+    );
+
+    server.udpServer.send('你好，这里是 udp 服务端', rinfo.port, rinfo.address, (err) => {
+      if (err !== null) {
+        log('server', err);
+      }
+    });
+  });
+
+  server.udpServer.bind(port, ip, () => {
+    log('server', 'udp 服务端 (' + ip + ', ' + port + ') 正在监听中...');
+    btn_udpServer.style = 'background-color: #2f3542;';
+  });
+}
+
+function stopUDPServer(server) {
+  server.udpServer.close();
+  server.udpServer = null;
 }
 
 // service
@@ -90,17 +123,22 @@ btn_udp.addEventListener('click', () => {
 
 // tcp server
 btn_tcpServer.addEventListener('click', () => {
-  if (tcpServer === null) {
-    tcpServer = window.services.tcpServer();
-    startTCPServer(tcpServer, ip_address.value, port.value);
+  if (server.tcpServer === null) {
+    server.tcpServer = window.services.tcpServer();
+    startTCPServer(server, ip_address.value, port.value);
   } else {
-    stopTCPServer(tcpServer);
+    stopTCPServer(server);
     btn_tcpServer.style = 'background-color: #747d8c;';
   }
 });
 
 // udp server
 btn_udpServer.addEventListener('click', () => {
-  udpServer = window.services.udpServer();
-  startUDPServer(udpServer, ip_address.value, port.value);
+  if (server.udpServer === null) {
+    server.udpServer = window.services.udpServer();
+    startUDPServer(server, ip_address.value, port.value);
+  } else {
+    stopUDPServer(server);
+    btn_udpServer.style = 'background-color: #747d8c;';
+  }
 });

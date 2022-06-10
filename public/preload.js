@@ -16,14 +16,29 @@ window.services = {
     client.write(message);
     log('client', "send tcp (ip: " + ip + ", port: " + port + ", message: \"" + message + "\")");
 
+    client.close();
+
     return;
   },
   udpSend: (log, ip, port, message) => {
     const client = createSocket('udp4');
+
+    client.on("error", (err) => {
+      log('client', err);
+    })
+
+    client.on("message", (msg, rinfo) => {
+      log('client receive', msg);
+    })
+
     client.send(message, port, ip, (err) => {
-      client.close();
+      if (err !== null) {
+        log('client', err);
+      }
     });
     log('client', "send udp (ip: " + ip + ", port: " + port + ", message: \"" + message + "\")");
+
+    return;
   },
   tcpServer: () => {
     const server = createServer();

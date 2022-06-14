@@ -16,8 +16,6 @@ window.services = {
     client.write(message);
     log('client', "send tcp (ip: " + ip + ", port: " + port + ", message: \"" + message + "\")");
 
-    client.close();
-
     return;
   },
   udpSend: (log, ip, port, message) => {

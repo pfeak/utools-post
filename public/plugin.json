@@ -5,10 +5,13 @@
   "pluginSetting": {
     "height": 550
   },
+  "development": {
+    "main": "http://localhost:5173"
+  },
   "features": [
     {
       "code": "post",
-      "explain": "为了方便学习、工作中遇到开发、测试问题，能方便的发送数据包。",
+      "explain": "当学习、工作中遇到开发、测试问题，能方便的发送数据包。",
       "cmds": ["post", "send"]
     },
     {

@@ -1,40 +1,36 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, shallowRef } from "vue";
+import Client from "./Client.vue";
+import Server from "./Server.vue";
 
-defineProps({
-  msg: String,
-})
+const defaultActive = ref("client")
+const showPage = shallowRef(Client)
 
-const count = ref(0)
+function handleSelect(key, keyPath) {
+    switch (key) {
+        case 'client':
+            showPage.value = Client
+            break
+        case 'server':
+            showPage.value = Server
+            break
+        default:
+            break
+    }
+}
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+    <ElMenu :default-active="defaultActive" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <ElMenuItem index="client">客户端</ElMenuItem>
+        <ElMenuItem index="server">服务端</ElMenuItem>
+    </ElMenu>
 
-  <div class="card">
-    <button type="button" @click="count++">my count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+    <component :is="showPage"></component>
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
+.el-menu-demo {
+    height: 30px;
 }
 </style>

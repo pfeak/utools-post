@@ -1,31 +1,22 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import Main from './views/Main.vue';
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <!-- <img src="vite.svg" class="logo" alt="Vite logo" /> -->
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <!-- <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" /> -->
-    </a>
+  <div class="common-layout">
+    <el-container>
+      <el-main>
+        <Main></Main>
+      </el-main>
+    </el-container>
   </div>
-  <HelloWorld msg="Vite + Vue" />
-  <el-button type="primary" style="margin-left: 16px;">点我打开</el-button>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.common-layout {
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid #000000; */
+  background-color: #f1f2f6;
 }
 </style>

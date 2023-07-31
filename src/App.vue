@@ -16,7 +16,6 @@ import Main from './views/Main.vue';
 .common-layout {
   width: 100%;
   height: 100%;
-  /* border: 1px solid #000000; */
   background-color: #f1f2f6;
 }
 </style>

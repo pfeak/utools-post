@@ -2,7 +2,7 @@
     <el-row :gutter="20">
         <el-col :span="9">
             <div class="grid-content title">
-                <el-text class="title">分组（双击修改）</el-text>
+                <EditText></EditText>
             </div>
         </el-col>
         <el-col :span="6">
@@ -42,7 +42,10 @@
     </el-row>
     <el-row :gutter="20">
         <el-col :span="24">
-            <div class="grid-content terminal-input"></div>
+            <!-- <div class="grid-content terminal-input"></div> -->
+            <div class="terminal-input">
+                <TerminalInput></TerminalInput>
+            </div>
         </el-col>
     </el-row>
     <el-row :gutter="20">
@@ -76,7 +79,7 @@
                 <el-text>持续发送</el-text>
                 <el-tooltip placement="right" raw-content>
                     <template #content>持续发送数据（秒）<br>0 不发送<br>1 最小<br>60 最大</template>
-                    <el-input-number min="0" max="60" step-strictly placeholder="秒"></el-input-number>
+                    <el-input-number :v-model="continueInput" :min="0" :max="60" step-strictly placeholder="秒"></el-input-number>
                 </el-tooltip>
             </div>
         </el-col>
@@ -89,10 +92,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, shallowRef } from 'vue'
+import EditText from '../components/EditText.vue';
+import TerminalInput from '../components/terminalInput.vue';
 
 // 弹出窗口状态
 const drawer = ref(false)
+
+// 输入框状态
+const continueInput = ref(0)
 
 // 管理列表数据模拟
 const count = ref(0)
@@ -117,6 +125,7 @@ const load = () => {
 .grid-content {
     width: 100%;
     min-height: 34px;
+    border-radius: 10px;
 
     display: flex;
     justify-content: center;
@@ -126,8 +135,6 @@ const load = () => {
 .title {
     display: flex;
     justify-content: start;
-    font-size: 16px;
-    margin-top: -2px;
 }
 
 .ip-text {
@@ -181,8 +188,10 @@ const load = () => {
 }
 
 .terminal-input {
+    width: 100%;
     height: 30vh;
     background-color: #ffffff;
+    border-radius: 10px;
 }
 
 .terminal-output {
@@ -203,8 +212,6 @@ const load = () => {
   justify-content: center;
   height: 60px;
   background: var(--el-color-primary-light-9);
-  /* margin: 10px; */
-  /* margin-left: -10px; */
   margin-bottom: 7px;
   margin-right: 7px;
   color: var(--el-color-primary);
@@ -225,6 +232,7 @@ const load = () => {
     background-color: #6b798e;
     color: #ffffff;
 }
+
 .el-drawer__body {
     padding: 7px;
 }

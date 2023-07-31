@@ -6,8 +6,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* background-color: #f1f2f6; */
 }
 
 #app {

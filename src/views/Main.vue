@@ -42,7 +42,6 @@
     </el-row>
     <el-row :gutter="20">
         <el-col :span="24">
-            <!-- <div class="grid-content terminal-input"></div> -->
             <div class="terminal-input">
                 <TerminalInput></TerminalInput>
             </div>
@@ -86,7 +85,9 @@
     </el-row>
     <el-row :gutter="20">
         <el-col :span="24">
-            <div class="grid-content terminal-output"></div>
+            <div class="terminal-output">
+                <TerminalOutput></TerminalOutput>
+            </div>
         </el-col>
     </el-row>
 </template>
@@ -94,7 +95,7 @@
 <script setup>
 import { ref, shallowRef } from 'vue'
 import EditText from '../components/EditText.vue';
-import TerminalInput from '../components/terminalInput.vue';
+import TerminalInput from '../components/TerminalInput.vue';
 
 // 弹出窗口状态
 const drawer = ref(false)
@@ -190,13 +191,13 @@ const load = () => {
 .terminal-input {
     width: 100%;
     height: 30vh;
-    background-color: #ffffff;
+    background-color: white;
     border-radius: 10px;
 }
 
 .terminal-output {
+    width: 100%;
     height: 45vh;
-    background-color: #282c34;
 }
 
 .infinite-list {

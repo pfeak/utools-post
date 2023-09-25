@@ -8,13 +8,13 @@
         <el-col :span="6">
             <div class="grid-content">
                 <el-text class="ip-text">IPv4</el-text>
-                <el-input class="ip-input" placeholder="请输入 IPv4 地址"/>
+                <el-input class="ip-input" placeholder="请输入 IPv4 地址" />
             </div>
         </el-col>
         <el-col :span="6">
             <div class="grid-content">
                 <el-text class="port-text">Port</el-text>
-                <el-input class="port-input" placeholder="请输入 Port 端口"/>
+                <el-input class="port-input" placeholder="请输入 Port 端口" />
             </div>
         </el-col>
         <el-col :span="3">
@@ -77,8 +77,9 @@
             <div class="grid-content continue">
                 <el-text>持续发送</el-text>
                 <el-tooltip placement="right" raw-content>
-                    <template #content>持续发送数据（秒）<br>0 不发送<br>1 最小<br>60 最大</template>
-                    <el-input-number :v-model="continueInput" :min="0" :max="60" step-strictly placeholder="秒"></el-input-number>
+                    <template #content>持续发送数据（秒）<br>0 单次发送<br>1 秒最小<br>60 秒最大</template>
+                    <el-input-number :v-model="continueInput" :min="0" :max="60" step-strictly
+                        placeholder="秒"></el-input-number>
                 </el-tooltip>
             </div>
         </el-col>
@@ -106,7 +107,7 @@ const continueInput = ref(0)
 // 管理列表数据模拟
 const count = ref(0)
 const load = () => {
-  count.value += 2
+    count.value += 2
 }
 </script>
 
@@ -156,6 +157,18 @@ const load = () => {
     width: 80%;
 }
 
+:deep(.el-input__wrapper) {
+    box-shadow: 0 0 0 0px;
+}
+
+:deep(.el-input__wrapper:hover) {
+    box-shadow: 0 0 0 0px;
+}
+
+:deep(.el-input__wrapper:focus) {
+    box-shadow: 0 0 0 0px;
+}
+
 .manage-button {
     color: #282c34;
     width: 90% !important;
@@ -185,7 +198,7 @@ const load = () => {
 }
 
 .continue {
-    justify-content:end;
+    justify-content: end;
 }
 
 .terminal-input {
@@ -201,25 +214,25 @@ const load = () => {
 }
 
 .infinite-list {
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 .infinite-list .infinite-list-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  background: var(--el-color-primary-light-9);
-  margin-bottom: 7px;
-  margin-right: 7px;
-  color: var(--el-color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    background: var(--el-color-primary-light-9);
+    margin-bottom: 7px;
+    margin-right: 7px;
+    color: var(--el-color-primary);
 }
 
-.infinite-list .infinite-list-item + .list-item {
-  margin-top: 10px;
+.infinite-list .infinite-list-item+.list-item {
+    margin-top: 10px;
 }
 </style>
 

@@ -19,11 +19,16 @@ function stopEditing() {
 </script>
 
 <template>
-    <el-text v-show="!isEditing" @click="startEditing">{{ text }}</el-text>
-    <el-input v-show="isEditing" class="text-edit-input" ref="refInput" v-model="text" maxlength="20" @keyup.enter="stopEditing" @blur="stopEditing" />
+    <el-text class="text-show" v-show="!isEditing" @click="startEditing">{{ text }}</el-text>
+    <el-input class="text-edit-input" v-show="isEditing" ref="refInput" v-model="text" maxlength="20"
+        @keyup.enter="stopEditing" @blur="stopEditing" />
 </template>
 
 <style scoped>
+.text-show {
+    margin-left: 11px;
+}
+
 .text-edit-input {
     width: 100%;
 }

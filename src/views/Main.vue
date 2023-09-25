@@ -8,13 +8,13 @@
         <el-col :span="6">
             <div class="grid-content">
                 <el-text class="ip-text">IPv4</el-text>
-                <el-input class="ip-input" placeholder="请输入 IPv4 地址" />
+                <el-input class="ip-input" maxlength="15" placeholder="请输入 IPv4 地址" v-model="valIP" />
             </div>
         </el-col>
         <el-col :span="6">
             <div class="grid-content">
                 <el-text class="port-text">Port</el-text>
-                <el-input class="port-input" placeholder="请输入 Port 端口" />
+                <el-input class="port-input" maxlength="5" placeholder="请输入 Port 端口" v-model="valPort" />
             </div>
         </el-col>
         <el-col :span="3">
@@ -77,8 +77,8 @@
             <div class="grid-content continue">
                 <el-text>持续发送</el-text>
                 <el-tooltip placement="right" raw-content>
-                    <template #content>持续发送数据（秒）<br>0 单次发送<br>1 秒最小<br>60 秒最大</template>
-                    <el-input-number :v-model="continueInput" :min="0" :max="60" step-strictly
+                    <template #content>每间隔(秒)发送一次数据, 不填不启用</template>
+                    <el-input-number :v-model="continueInput" :min="1" :max="60" step-strictly
                         placeholder="秒"></el-input-number>
                 </el-tooltip>
             </div>
@@ -103,6 +103,10 @@ const drawer = ref(false)
 
 // 输入框状态
 const continueInput = ref(0)
+
+// 输入框信息
+const valIP = ref("127.0.0.1")
+const valPort = ref("8080")
 
 // 管理列表数据模拟
 const count = ref(0)
@@ -203,7 +207,7 @@ const load = () => {
 
 .terminal-input {
     width: 100%;
-    height: 30vh;
+    height: 31vh;
     background-color: white;
     border-radius: 10px;
 }

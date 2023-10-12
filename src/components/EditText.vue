@@ -1,7 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, defineExpose } from "vue";
 
-const text = ref("名称（单击修改）")
+const text = ref("名称(单击修改)")
 const isEditing = ref(false)
 const refInput = ref()
 
@@ -14,13 +14,18 @@ function startEditing() {
 
 // 停止编辑
 function stopEditing() {
+    if (text.value == "") {
+        text.value = "名称(单击修改)"
+    }
     isEditing.value = false
 }
+
+defineExpose({text})
 </script>
 
 <template>
     <el-text class="text-show" v-show="!isEditing" @click="startEditing">{{ text }}</el-text>
-    <el-input class="text-edit-input" v-show="isEditing" ref="refInput" v-model="text" maxlength="20"
+    <el-input class="text-edit-input" v-show="isEditing" ref="refInput" v-model="text" maxlength="14"
         @keyup.enter="stopEditing" @blur="stopEditing" />
 </template>
 

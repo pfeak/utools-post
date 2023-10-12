@@ -1,6 +1,6 @@
 <template>
     <el-row :gutter="20">
-        <el-col :span="4">
+        <el-col :span="5">
             <div class="grid-content title">
                 <EditText ref="valName"></EditText>
             </div>
@@ -17,17 +17,22 @@
                 <el-input class="port-input" maxlength="5" placeholder="请输入 Port 端口" v-model="valPort" />
             </div>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="2">
             <div class="grid-content">
                 <el-button @click="fresh(null)">新建</el-button>
             </div>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="2">
+            <div class="grid-content">
+                <el-button @click="deleteDoc">删除</el-button>
+            </div>
+        </el-col>
+        <el-col :span="2">
             <div class="grid-content">
                 <el-button @click="save">保存</el-button>
             </div>
         </el-col>
-        <el-col :span="3">
+        <el-col :span="2">
             <div class="grid-content" style="justify-content:end">
                 <Management :doc-list="docList" @select-one="selectOne"></Management>
             </div>
@@ -142,6 +147,18 @@ function save() {
     }
     utools.dbStorage.setItem(`config/${nowUUID}`, tmpConfig)
     loadList()
+}
+
+// 删除
+function deleteDoc() {
+    utools.dbStorage.removeItem(`config/${nowUUID}`)
+    fresh(null)
+    loadList()
+    ElMessage({
+        message: '删除成功',
+        type: 'success',
+        duration: 1000,
+    })
 }
 
 // 读取管理列表

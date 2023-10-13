@@ -1,19 +1,28 @@
 <script setup>
-import { ref } from 'vue'
-const textarea = ref('>> 日志输出')
+defineProps({
+    output: String
+})
+
+textarea.scrollTop = textarea.scrollHeight;
 </script>
 
 <template>
-    <div class="terminal-output-text">{{ textarea }}</div>
+    <textarea class="terminal-output-text">{{ output }}</textarea>
 </template>
 
 <style scoped>
 .terminal-output-text {
-    height: 100%;
+    outline: none;
+    width: 100%;
+    height: 98%;
     padding: 5px;
+    padding-bottom: 0px;
     border: 0px;
+    background-color: transparent;
     color: white;
-    background-color: #282c34;
-    border-radius: 10px;
+    /* background-color: #282c34; */
+    /* border-radius: 15px; */
+    font-size: 12px;
+    opacity: 0.9;
 }
 </style>

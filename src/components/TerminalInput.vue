@@ -40,9 +40,6 @@ defineExpose({dataSend, dataReceive})
 
 .terminal-input-tabs .el-tabs__content {
     height: 100%;
-    /* border-bottom-left-radius: 0px; */
-    /* border-bottom-right-radius: 15px; */
-    height: 67%;
     margin-top: 5px;
     margin-left: 5px;
     margin-right: 5px;
@@ -53,6 +50,7 @@ defineExpose({dataSend, dataReceive})
 
 .terminal-input-tabs .el-tabs__item {
     height: 23px;
+    padding: 10px;
     color: #6b798e !important;
 }
 

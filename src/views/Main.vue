@@ -48,7 +48,7 @@
     <el-row :gutter="20">
         <el-col :span="3">
             <div class="grid-content">
-                <el-button plain>TCP</el-button>
+                <el-button plain @click="tcpPost">TCP</el-button>
             </div>
         </el-col>
         <el-col :span="3">
@@ -58,7 +58,7 @@
         </el-col>
         <el-col :span="3">
             <div class="grid-content">
-                <el-button plain>TCP服务器</el-button>
+                <el-button plain @click="tcpSend">TCP服务器</el-button>
             </div>
         </el-col>
         <el-col :span="3">
@@ -67,7 +67,7 @@
             </div>
         </el-col>
         <el-col :span="3">
-            <div class="grid-content">
+            <div class="grid-content" @click="clearOutput">
                 <el-button plain>清空日志</el-button>
             </div>
         </el-col>
@@ -85,7 +85,7 @@
     <el-row :gutter="20">
         <el-col :span="24">
             <div class="terminal-output">
-                <TerminalOutput></TerminalOutput>
+                <TerminalOutput :output="valOutput"></TerminalOutput>
             </div>
         </el-col>
     </el-row>
@@ -108,6 +108,9 @@ const docList = ref()
 
 // 输入框状态
 const continueInput = ref(0)
+
+// 输出信息
+const valOutput = ref(">> 日志打印")
 
 onMounted(() => {
     loadList()
@@ -173,6 +176,30 @@ function selectOne(doc) {
     fresh(doc)
 }
 
+// servers
+var servers = {
+    tcpServer: null,
+    udpServer: null,
+};
+
+function clientLog(tag, msg) {
+    valOutput.value += '\n' + tag + ': ' + msg;
+    valOutput.value.scrollTop = valOutput.value.scrollHeight; // textarea 展示最后一行
+}
+
+function tcpPost() {
+    window.services.tcpSend(
+        clientLog,
+        valIP.value,
+        valPort.value,
+        valInput.value.activeName == "send" ? valInput.value.dataSend : valInput.value.dataReceive,
+    );
+}
+
+function clearOutput() {
+    valOutput.value = ">> 日志打印"
+}
+
 function getUUID() {
     if (typeof crypto === 'object') {
         if (typeof crypto.randomUUID === 'function') {
@@ -205,14 +232,11 @@ function getUUID() {
 <style scoped>
 .el-row {
     margin-bottom: 4px;
-
-    /* border: 1px solid red; */
 }
 
 .el-col {
     padding-left: 5px !important;
     padding-right: 5px !important;
-    /* border: 1px solid gray; */
 }
 
 .grid-content {
@@ -291,12 +315,14 @@ function getUUID() {
     width: 100%;
     height: 31vh;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .terminal-output {
     width: 100%;
     height: 45vh;
+    background-color: #282c34;
+    border-radius: 5px;
 }
 </style>
 

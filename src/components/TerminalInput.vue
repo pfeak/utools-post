@@ -6,20 +6,20 @@ import { ref } from "vue"
 const activeName = ref("receive")
 
 // 数据
-const dataSend = ref("你好，这里是 TCP/UDP 服务器!")
-const dataReceive = ref("嗨，我是 TCP/UDP 发送的消息!")
+const dataSend = ref("嗨，我是 TCP/UDP 发送的消息!")
+const dataReceive = ref("你好，这里是 TCP/UDP 服务器!")
 
 defineExpose({dataSend, dataReceive})
 </script>
 
 <template>
     <el-tabs v-model="activeName" class="terminal-input-tabs">
-        <el-tab-pane label="发送" name="receive">
-            <el-input class="terminal-input" v-model="dataReceive" rows="6" resize="none" type="textarea"
+        <el-tab-pane label="发送" name="send">
+            <el-input class="terminal-input" v-model="dataSend" rows="6" resize="none" type="textarea"
                 placeholder="请自定义发送内容" />
         </el-tab-pane>
-        <el-tab-pane label="接收" name="send">
-            <el-input class="terminal-input" v-model="dataSend" rows="6" resize="none" type="textarea"
+        <el-tab-pane label="接收" name="receive">
+            <el-input class="terminal-input" v-model="dataReceive" rows="6" resize="none" type="textarea"
                 placeholder="请自定义服务响应内容" />
         </el-tab-pane>
     </el-tabs>

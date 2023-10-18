@@ -53,17 +53,17 @@
         </el-col>
         <el-col :span="3">
             <div class="grid-content">
-                <el-button plain>UDP</el-button>
+                <el-button plain @click="udpPost">UDP</el-button>
             </div>
         </el-col>
         <el-col :span="3">
             <div class="grid-content">
-                <el-button plain>TCP服务器</el-button>
+                <el-button plain @click="tcpServer" :style="{ 'background-color': tcpColor }">TCP服务器</el-button>
             </div>
         </el-col>
         <el-col :span="3">
             <div class="grid-content">
-                <el-button plain>UDP服务器</el-button>
+                <el-button plain @click="udpServer" :style="{ 'background-color': udpColor }">UDP服务器</el-button>
             </div>
         </el-col>
         <el-col :span="3">
@@ -85,7 +85,7 @@
     <el-row :gutter="20">
         <el-col :span="24">
             <div class="terminal-output">
-                <TerminalOutput :output="valOutput" :style="{ color: textColor }"></TerminalOutput>
+                <TerminalOutput :output="valOutput"></TerminalOutput>
             </div>
         </el-col>
     </el-row>
@@ -109,13 +109,24 @@ const docList = ref()
 // 输入框状态
 const continueInput = ref(0)
 
+// 按钮颜色
+const tcpColor = ref()
+const udpColor = ref()
+
 // 输出信息
 const valOutput = ref(">> 日志打印")
-const textColor = ref("white")
 
 onMounted(() => {
     loadList()
 })
+
+const changeTcpColor = (color) => {
+    tcpColor.value = color;
+};
+
+const changeUdpColor = (color) => {
+    udpColor.value = color;
+};
 
 // 新建
 function fresh(obj) {
@@ -178,12 +189,12 @@ function selectOne(doc) {
 }
 
 // servers
-var servers = {
+const servers = {
     tcpServer: null,
     udpServer: null,
 };
 
-function clientLog(serverTag, tag, msg) {
+function clientLog(protocolTag, serverTag, tag, msg) {
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth() + 1;
@@ -195,16 +206,53 @@ function clientLog(serverTag, tag, msg) {
 
     const timeStr = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + paddedSeconds
 
-    valOutput.value += '\n' + serverTag + '| ' + timeStr + "| " + tag + "| " + msg;
+    valOutput.value += '\n' + timeStr + "|" + protocolTag + "|" + serverTag + '| ' + tag + "| " + msg;
+}
+
+function tcpLog(serverTag, infoTag, msg) {
+    clientLog("TCP", serverTag, infoTag, msg)
+}
+
+function udpLog(serverTag, infoTag, msg) {
+    clientLog("UDP", serverTag, infoTag, msg)
 }
 
 function tcpPost() {
     window.services.tcpSend(
-        clientLog,
+        tcpLog,
         valIP.value,
         valPort.value,
-        valInput.value.activeName == "send" ? valInput.value.dataSend : valInput.value.dataReceive,
+        valInput.value.dataSend,
     );
+}
+
+function udpPost() {
+    console.log(`output->valInput.value.dataSend`,valInput.value.dataSend)
+    console.log(`output->valInput.value.dataReceive`,valInput.value.dataReceive)
+    window.services.udpSend(
+        udpLog,
+        valIP.value,
+        valPort.value,
+        valInput.value.dataSend,
+    );
+}
+
+function tcpServer() {
+    if (servers.tcpServer === null) {
+        servers.tcpServer = window.services.tcpServer();
+        window.services.startTCPServer(tcpLog, changeTcpColor, servers, valIP.value, valPort.value, valInput.value.dataReceive);
+    } else {
+        window.services.stopTCPServer(changeTcpColor, servers);
+    }
+}
+
+function udpServer() {
+    if (servers.udpServer === null) {
+        servers.udpServer = window.services.udpServer();
+        window.services.startUDPServer(udpLog, changeUdpColor, servers, valIP.value, valPort.value, valInput.value.dataReceive);
+    } else {
+        window.services.stopUDPServer(changeUdpColor, servers);
+    }
 }
 
 function clearOutput() {

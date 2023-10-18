@@ -15,11 +15,6 @@ const props = defineProps({
     }
 })
 
-// 管理列表数据模拟
-const load = () => {
-    // console.log(`child-output-> docsList`, props.docList)
-}
-
 function select(doc) {
     emit("selectOne", doc)
     drawer.value = false
@@ -30,15 +25,15 @@ function select(doc) {
     <el-button class="manage-button" @click="drawer = true">管理</el-button>
     <el-drawer v-model="drawer" title="标题" :with-header="false" :show-close="false">
         <ul v-infinite-scroll="load" class="infinite-list" style="overflow: auto">
-            <li v-for="(doc, index) in docList" :key="index" class="infinite-list-item item-color">
-                <el-row :gutter="20" @click="select(doc)" class="list-item">
-                    <el-col :span="24" style="margin-top: 7px;">
+            <li v-for="(doc, index) in docList" :key="index" class="infinite-list-row">
+                <el-row :gutter="20" @click="select(doc)" class="list-row">
+                    <el-col :span="24" class="list-col">
                         <el-text class="item-color">{{ doc.name }}</el-text>
                     </el-col>
-                    <el-col :span="14" style="margin-top: 7px;">
+                    <el-col :span="14" class="list-col">
                         <el-text class="item-color">{{ doc.ipv4 }}</el-text>
                     </el-col>
-                    <el-col :span="10" style="margin-top: 7px;">
+                    <el-col :span="10" class="list-col">
                         <el-text class="item-color">{{ doc.port }}</el-text>
                     </el-col>
                 </el-row>
@@ -79,28 +74,34 @@ function select(doc) {
     list-style: none;
 }
 
-.infinite-list-item {
+.infinite-list-row {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 60px;
     margin-bottom: 7px;
-    margin-right: 7px;
-}
-
-.list-item {
-    width: 100%;
-}
-
-.item-color {
     background-color: #f1f2f6;
 }
 
-.item-color:hover {
-    transform: scale(1.05);
+.list-row {
+    width: 100%;
 }
 
-.item-color:active {
+.list-col {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.infinite-list-row:hover {
+    background-color: #6b798e;
+    color: #f1f2f6;
+}
+
+.infinite-list-row:hover .item-color {
+    color: #f1f2f6;
+}
+
+.infinite-list-row:active {
     transform: scale(0.95);
 }
 </style>

@@ -58,7 +58,7 @@
         </el-col>
         <el-col :span="3">
             <div class="grid-content">
-                <el-button plain @click="tcpSend">TCP服务器</el-button>
+                <el-button plain>TCP服务器</el-button>
             </div>
         </el-col>
         <el-col :span="3">
@@ -85,7 +85,7 @@
     <el-row :gutter="20">
         <el-col :span="24">
             <div class="terminal-output">
-                <TerminalOutput :output="valOutput"></TerminalOutput>
+                <TerminalOutput :output="valOutput" :style="{ color: textColor }"></TerminalOutput>
             </div>
         </el-col>
     </el-row>
@@ -111,6 +111,7 @@ const continueInput = ref(0)
 
 // 输出信息
 const valOutput = ref(">> 日志打印")
+const textColor = ref("white")
 
 onMounted(() => {
     loadList()
@@ -182,9 +183,19 @@ var servers = {
     udpServer: null,
 };
 
-function clientLog(tag, msg) {
-    valOutput.value += '\n' + tag + ': ' + msg;
-    valOutput.value.scrollTop = valOutput.value.scrollHeight; // textarea 展示最后一行
+function clientLog(serverTag, tag, msg) {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    let paddedSeconds = seconds.toString().padStart(2, '0');
+
+    const timeStr = year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + paddedSeconds
+
+    valOutput.value += '\n' + serverTag + '| ' + timeStr + "| " + tag + "| " + msg;
 }
 
 function tcpPost() {

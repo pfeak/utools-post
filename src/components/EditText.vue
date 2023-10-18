@@ -32,6 +32,7 @@ defineExpose({text})
 <style scoped>
 .text-show {
     margin-left: 11px;
+    margin-bottom: 3px;
 }
 
 .text-edit-input {

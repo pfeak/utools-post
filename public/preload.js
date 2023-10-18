@@ -6,15 +6,15 @@ window.services = {
     const client = createConnection(port, ip);
 
     client.on('error', (err) => {
-      log('client', err);
+      log('发送端', "失败", err);
     });
 
     client.on('data', (data) => {
-      log('client receive', data);
+      log('发送端', "接收", data);
     });
 
     client.write(message);
-    log('client', "send tcp (ip: " + ip + ", port: " + port + ", message: \"" + message + "\")");
+    log('发送端', "信息", "发送 tcp (ip: " + ip + ", port: " + port + ", message: \"" + message + "\")");
 
     return;
   },

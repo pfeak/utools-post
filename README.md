@@ -13,12 +13,12 @@
 ## Todo
 
 - [x] 客户端管理
-- [ ] UDP server/client
-- [ ] TCP server/client
-- [ ] 自定义发送数据内容
-- [ ] 自定义接收数据内容
+- [x] UDP server/client
+- [x] TCP server/client
+- [x] 自定义发送数据内容
+- [x] 自定义接收数据内容
 - [ ] 持续发送
-- [ ] 附带时间的日志输出
+- [x] 附带时间的日志输出
 - [ ] 列表排序
 - [ ] 列表顺序可拖动
 

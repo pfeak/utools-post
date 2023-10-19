@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineExpose } from "vue";
+import { ref } from "vue";
 
 const text = ref("名称(单击修改)")
 const isEditing = ref(false)

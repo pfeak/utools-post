@@ -227,8 +227,6 @@ function tcpPost() {
 }
 
 function udpPost() {
-    console.log(`output->valInput.value.dataSend`,valInput.value.dataSend)
-    console.log(`output->valInput.value.dataReceive`,valInput.value.dataReceive)
     window.services.udpSend(
         udpLog,
         valIP.value,

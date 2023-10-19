@@ -6,13 +6,13 @@
     "height": 550
   },
   "development": {
-    "main": "http://localhost:5173"
+    "main": "http://localhost:3000"
   },
   "features": [
     {
       "code": "post",
-      "explain": "当学习、工作中遇到开发、测试问题，能方便的发送数据包",
-      "cmds": ["post", "send"]
+      "explain": "方便快速的发送、接受数据包(例如 tcp/udp)",
+      "cmds": ["post", "send", "server"]
     },
     {
       "code": "tcp",

@@ -3,7 +3,7 @@
 import { ref } from "vue"
 
 // 切换选项卡
-const activeName = ref("receive")
+const activeName = ref("send")
 
 // 数据
 const dataSend = ref("嗨，我是 TCP/UDP 发送的消息!")

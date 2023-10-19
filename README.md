@@ -4,11 +4,13 @@
 
 ## Demo
 
-![tcp_server](./images/tcp_server.png)
+![1](./images/1.png)
 
-![send_tcp](./images/send_tcp.png)
+![2](./images/2.png)
 
-![udp](./images/udp.png)
+![3](./images/3.png)
+
+![4](./images/4.png)
 
 ## Todo
 
@@ -17,7 +19,7 @@
 - [x] TCP server/client
 - [x] 自定义发送数据内容
 - [x] 自定义接收数据内容
-- [ ] 持续发送
+- [x] 持续发送
 - [x] 附带时间的日志输出
 - [ ] 列表排序
 - [ ] 列表顺序可拖动

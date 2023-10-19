@@ -48,12 +48,12 @@
     <el-row :gutter="20">
         <el-col :span="3">
             <div class="grid-content">
-                <el-button plain @click="tcpPost">TCP</el-button>
+                <el-button plain @click="tcpPost" :style="{ 'background-color': tcpPostColor }">TCP</el-button>
             </div>
         </el-col>
         <el-col :span="3">
             <div class="grid-content">
-                <el-button plain @click="udpPost">UDP</el-button>
+                <el-button plain @click="udpPost" :style="{ 'background-color': udpPostColor }">UDP</el-button>
             </div>
         </el-col>
         <el-col :span="3">
@@ -110,6 +110,8 @@ const docList = ref()
 const continueInput = ref(0)
 
 // 按钮颜色
+const tcpPostColor = ref()
+const udpPostColor = ref()
 const tcpColor = ref()
 const udpColor = ref()
 
@@ -119,6 +121,14 @@ const valOutput = ref(">> 日志打印")
 onMounted(() => {
     loadList()
 })
+
+const changeTcpPostColor = (color) => {
+    tcpPostColor.value = color;
+};
+
+const changeUdpPostColor = (color) => {
+    udpPostColor.value = color;
+};
 
 const changeTcpColor = (color) => {
     tcpColor.value = color;
@@ -194,6 +204,11 @@ const servers = {
     udpServer: null,
 };
 
+const intervals = {
+    tcp: null,
+    udp: null
+}
+
 function clientLog(protocolTag, serverTag, tag, msg) {
     const now = new Date();
     const year = now.getFullYear();
@@ -218,21 +233,57 @@ function udpLog(serverTag, infoTag, msg) {
 }
 
 function tcpPost() {
-    window.services.tcpSend(
-        tcpLog,
-        valIP.value,
-        valPort.value,
-        valInput.value.dataSend,
-    );
+    if (intervals.tcp !== null) {
+        clearTimeout(intervals.tcp)
+        intervals.tcp = null
+        changeTcpPostColor("#747d8c")
+        return
+    }
+    if (continueInput.value === 0) {
+        window.services.tcpSend(
+            tcpLog,
+            valIP.value,
+            valPort.value,
+            valInput.value.dataSend,
+        );
+    } else {
+        intervals.tcp = setInterval(() => {
+            window.services.tcpSend(
+                tcpLog,
+                valIP.value,
+                valPort.value,
+                valInput.value.dataSend,
+            );
+        }, continueInput.value * 1000)
+        changeTcpPostColor("#2f3542")
+    }
 }
 
 function udpPost() {
-    window.services.udpSend(
-        udpLog,
-        valIP.value,
-        valPort.value,
-        valInput.value.dataSend,
-    );
+    if (intervals.udp !== null) {
+        clearTimeout(intervals.udp)
+        intervals.udp = null
+        changeUdpPostColor("#747d8c")
+        return
+    }
+    if (continueInput.value === 0) {
+        window.services.udpSend(
+            udpLog,
+            valIP.value,
+            valPort.value,
+            valInput.value.dataSend,
+        );
+    } else {
+        intervals.udp = setInterval(() => {
+            window.services.udpSend(
+                udpLog,
+                valIP.value,
+                valPort.value,
+                valInput.value.dataSend,
+            );
+        }, continueInput.value * 1000)
+        changeUdpPostColor("#2f3542")
+    }
 }
 
 function tcpServer() {

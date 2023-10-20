@@ -81,6 +81,7 @@ function select(doc) {
     height: 60px;
     margin-bottom: 7px;
     background-color: #e4e8f0;
+    border-radius: 5px;
 }
 
 .list-row {

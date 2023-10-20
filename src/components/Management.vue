@@ -80,7 +80,7 @@ function select(doc) {
     justify-content: center;
     height: 60px;
     margin-bottom: 7px;
-    background-color: #f1f2f6;
+    background-color: #e4e8f0;
 }
 
 .list-row {

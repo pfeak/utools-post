@@ -1,6 +1,6 @@
 # uTools-post
 
-方便快速的发送、接受数据包（例如 tcp/udp）。
+方便快速的发送、接受数据包（例如 tcp/udp）
 
 ## Demo
 

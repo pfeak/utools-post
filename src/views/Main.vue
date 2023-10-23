@@ -14,7 +14,7 @@
         <el-col :span="5">
             <div class="grid-content">
                 <el-text class="port-text">Port</el-text>
-                <el-input class="port-input" maxlength="5" placeholder="请输入 Port 端口" v-model="valPort" />
+                <el-input class="port-input" maxlength="5" placeholder="请输入端口" v-model="valPort" />
             </div>
         </el-col>
         <el-col :span="2">

@@ -16,7 +16,7 @@
 
 ## 安装
 
-1. 通过 uTools 插件市场搜索 “udp”、“tcp”、“post” 安装
+1. 通过 uTools 插件市场搜索 “utools-post” 安装
 2. 通过 [发布页面](https://github.com/pfeak/utools-post/releases) 下载 `UPX` 文件手动拖拽到 utools 弹框安装
 
 
